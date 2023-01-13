@@ -1,0 +1,5 @@
+root=true
+
+[*.cs]
+#Remove unused private member
+#dotnet_diagnostic.IDE0051.severity = none
