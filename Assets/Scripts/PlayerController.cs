@@ -6,15 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public float velocityZ = 0.0f;
     public float velocityZAdjustment = 10;
-    
-    public float rotateFactor = 100;
-    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float rotateFactor = 100;
+
 
     // Update is called once per frame
     void Update()
