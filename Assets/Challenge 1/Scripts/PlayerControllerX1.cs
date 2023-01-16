@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerX : MonoBehaviour
+public class PlayerControllerX1 : MonoBehaviour
 {
     public float speed = 10;
     public float rotationSpeed = 100;
