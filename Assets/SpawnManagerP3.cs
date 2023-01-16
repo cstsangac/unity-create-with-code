@@ -16,6 +16,9 @@ public class SpawnManagerP3 : MonoBehaviour
 
     void Spawn() {
         Instantiate(obstaclePrefab, new Vector3(30, 0, 0), obstaclePrefab.transform.rotation);
-        Invoke(nameof(Spawn),Random.Range(1, repeat));
+
+        if (!PlayerControllerP3.gameOver) {
+            Invoke(nameof(Spawn),Random.Range(1, repeat));
+        }
     }
 }

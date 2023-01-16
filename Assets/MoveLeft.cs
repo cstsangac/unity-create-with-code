@@ -6,9 +6,14 @@ public class MoveLeft : MonoBehaviour
 {
     public float speed = 10;
 
+    private void Start() {
+
+    }
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime * Vector3.left);
+        if (!PlayerControllerP3.gameOver) {
+            transform.Translate(speed * Time.deltaTime * Vector3.left);
+        }
     }
 }
