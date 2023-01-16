@@ -15,10 +15,11 @@ public class SpawnManagerP3 : MonoBehaviour
     }
 
     void Spawn() {
+        if (PlayerControllerP3.gameOver) {
+            return;
+        }
         Instantiate(obstaclePrefab, new Vector3(30, 0, 0), obstaclePrefab.transform.rotation);
 
-        if (!PlayerControllerP3.gameOver) {
-            Invoke(nameof(Spawn),Random.Range(1, repeat));
-        }
+        Invoke(nameof(Spawn),Random.Range(1, repeat));
     }
 }

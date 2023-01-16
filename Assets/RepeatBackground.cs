@@ -16,6 +16,9 @@ public class RepeatBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerControllerP3.gameOver) {
+            return;
+        }
         if (transform.position.x < startPos.x - repeatWidth ) {
             transform.position = startPos;
         }
