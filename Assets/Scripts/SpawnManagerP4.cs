@@ -9,16 +9,41 @@ public class SpawnManagerP4 : MonoBehaviour
   public GameObject powerupPrefab;
   public float spawnFreq = 3;
   public float spawnRange = 9;
+
+
+  int numOfNewSpawn = 1;
   // Start is called before the first frame update
   void Start()
   {
-    Invoke(nameof(Spawn), 1);
+    Debug.Log("SpawnManager CurrentThread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+
+    StartCoroutine(Spawn());
   }
 
-  void Spawn()
+
+  IEnumerator Spawn()
   {
-    Instantiate(enemyPrefab, new Vector3(Random.Range(-spawnRange, spawnRange), 6, Random.Range(-spawnRange, spawnRange)), enemyPrefab.transform.rotation);
-    Instantiate(powerupPrefab, new Vector3(Random.Range(-spawnRange, spawnRange), 0, Random.Range(-spawnRange, spawnRange)), enemyPrefab.transform.rotation);
-    Invoke(nameof(Spawn), Random.Range(1, spawnFreq));
+    while (true)
+    {
+      for (int i = 0; i < numOfNewSpawn; i++)
+      {
+        Instantiate(enemyPrefab, new Vector3(RandPos(), 6, RandPos()), enemyPrefab.transform.rotation);
+        Instantiate(powerupPrefab, new Vector3(RandPos(), 0, RandPos()), enemyPrefab.transform.rotation);
+      }
+      while (true)
+      {
+        yield return new WaitForSeconds(3);
+        if (FindObjectsOfType<EnemyP4>().Length < 1)
+        {
+          break;
+        }
+      }
+      numOfNewSpawn *= 2;
+    }
+  }
+
+  float RandPos()
+  {
+    return Random.Range(-spawnRange, spawnRange);
   }
 }

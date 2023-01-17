@@ -15,6 +15,7 @@ public class PlayerControllerP4 : MonoBehaviour
   void Start()
   {
     Debug.Log("All Tags: " + string.Join(",", UnityEditorInternal.InternalEditorUtility.tags));
+    Debug.Log("Player CurrentThread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
     rb = GetComponent<Rigidbody>();
     self = gameObject;
   }

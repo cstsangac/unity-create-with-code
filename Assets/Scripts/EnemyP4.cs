@@ -10,6 +10,7 @@ public class EnemyP4 : MonoBehaviour
   void Start()
   {
     rb = GetComponent<Rigidbody>();
+    Debug.Log("Enemy CurrentThread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
   }
 
   // Update is called once per frame
