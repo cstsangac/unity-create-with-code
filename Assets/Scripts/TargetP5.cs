@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetP5 : MonoBehaviour
 {
+  public ParticleSystem explosion;
 
   private float minSpeed = 12;
   private float maxSpeed = 16;
@@ -24,9 +25,9 @@ public class TargetP5 : MonoBehaviour
   {
     if (transform.position.y < ySpawnPos)
     {
-      Destroy(gameObject);
+      Destory();
+      GameManagerP5.AddScore(-1);
     }
-
 
   }
 
@@ -34,14 +35,20 @@ public class TargetP5 : MonoBehaviour
   {
     if (Input.GetMouseButton(0))
     {
-      Destroy(gameObject);
+      Destory();
       GameManagerP5.AddScore(1);
     }
   }
 
   private void OnTriggerEnter(Collider other)
   {
+    Destory();
+  }
+
+  private void Destory()
+  {
     Destroy(gameObject);
+    Instantiate(explosion, transform.position, explosion.transform.rotation);
   }
 
 }
