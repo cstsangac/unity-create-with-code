@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManagerP5 : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManagerP5 : MonoBehaviour
   public float spawnRate = 1;
   public float decreaseSpawnRateAfterSec = 5; // decrease spawn rate every sec
   public float spawnRateMultiplier = 0.8f;
+  public static TextMeshProUGUI scoreText;
+  public static int score;
 
 
   public List<GameObject> targets;
@@ -16,6 +19,7 @@ public class GameManagerP5 : MonoBehaviour
   {
     StartCoroutine(SpawnTarget());
     StartCoroutine(DecreaseSpawnRate());
+    AddScore(0);
   }
 
   IEnumerator SpawnTarget()
@@ -36,5 +40,15 @@ public class GameManagerP5 : MonoBehaviour
       spawnRate *= spawnRateMultiplier;
       Debug.Log("spawnRate is now " + spawnRate + " s");
     }
+  }
+
+  public static void AddScore(int scoreToAdd)
+  {
+    if (scoreText == null)
+    {
+      scoreText = ScoreTextP5.self;
+    }
+    score += scoreToAdd;
+    scoreText.text = "Score: " + score;
   }
 }

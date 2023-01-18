@@ -26,11 +26,17 @@ public class TargetP5 : MonoBehaviour
     {
       Destroy(gameObject);
     }
+
+
   }
 
-  private void OnMouseDown()
+  private void OnMouseOver()
   {
-    Destroy(gameObject);
+    if (Input.GetMouseButton(0))
+    {
+      Destroy(gameObject);
+      GameManagerP5.AddScore(1);
+    }
   }
 
   private void OnTriggerEnter(Collider other)
